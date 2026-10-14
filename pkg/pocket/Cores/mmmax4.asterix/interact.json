@@ -1,0 +1,198 @@
+{
+  "interact": {
+    "magic": "APF_VER_1",
+    "variables": [
+      {
+        "name": "Reset Core",
+        "id": 0,
+        "type": "action",
+        "enabled": true,
+        "address": "0xF0000000",
+        "value": 1
+      },
+      {
+        "name": "Screen Shape",
+        "id": 60,
+        "type": "list",
+        "enabled": true,
+        "persist": true,
+        "address": "0xF2000000",
+        "defaultval": 0,
+        "mask": "0xFFFFFFF9",
+        "options": [
+          {
+            "name": "Arcade 4:3",
+            "value": "0x00000000"
+          },
+          {
+            "name": "Fill screen",
+            "value": "0x00000002"
+          }
+        ]
+      },
+      {
+        "name": "Scanlines",
+        "id": 61,
+        "type": "list",
+        "enabled": true,
+        "persist": true,
+        "address": "0xF3000000",
+        "defaultval": 0,
+        "mask": "0xFFFFFFFC",
+        "options": [
+          {
+            "name": "Off",
+            "value": "0x00000000"
+          },
+          {
+            "name": "25%",
+            "value": "0x00000001"
+          },
+          {
+            "name": "50%",
+            "value": "0x00000002"
+          },
+          {
+            "name": "75%",
+            "value": "0x00000003"
+          }
+        ]
+      },
+      {
+        "name": "Shadow Mask",
+        "id": 62,
+        "type": "list",
+        "enabled": true,
+        "persist": true,
+        "address": "0xF3000000",
+        "defaultval": 0,
+        "mask": "0xFFFFFF8F",
+        "options": [
+          {
+            "name": "Off",
+            "value": "0x00000000"
+          },
+          {
+            "name": "1x",
+            "value": "0x00000010"
+          },
+          {
+            "name": "2x",
+            "value": "0x00000020"
+          },
+          {
+            "name": "3x",
+            "value": "0x00000030"
+          }
+        ]
+      },
+      {
+        "name": "Test Switch (hold)",
+        "id": 40,
+        "type": "check",
+        "enabled": true,
+        "persist": false,
+        "address": "0xF2000000",
+        "defaultval": 0,
+        "mask": "0xFFFFFEFF",
+        "value": "0x00000100"
+      },
+      {
+        "name": "Test Button",
+        "id": 41,
+        "type": "list",
+        "enabled": true,
+        "persist": true,
+        "address": "0xF2000000",
+        "defaultval": 0,
+        "mask": "0xFFF0FFFF",
+        "options": [
+          {
+            "name": "Unassigned",
+            "value": "0x00000000"
+          },
+          {
+            "name": "A",
+            "value": "0x00010000"
+          },
+          {
+            "name": "B",
+            "value": "0x00020000"
+          },
+          {
+            "name": "X",
+            "value": "0x00030000"
+          },
+          {
+            "name": "Y",
+            "value": "0x00040000"
+          },
+          {
+            "name": "L",
+            "value": "0x00050000"
+          },
+          {
+            "name": "R",
+            "value": "0x00060000"
+          },
+          {
+            "name": "Select",
+            "value": "0x00070000"
+          },
+          {
+            "name": "Start",
+            "value": "0x00080000"
+          }
+        ]
+      },
+      {
+        "name": "Service Button",
+        "id": 42,
+        "type": "list",
+        "enabled": true,
+        "persist": true,
+        "address": "0xF2000000",
+        "defaultval": 0,
+        "mask": "0xFF0FFFFF",
+        "options": [
+          {
+            "name": "Unassigned",
+            "value": "0x00000000"
+          },
+          {
+            "name": "A",
+            "value": "0x00100000"
+          },
+          {
+            "name": "B",
+            "value": "0x00200000"
+          },
+          {
+            "name": "X",
+            "value": "0x00300000"
+          },
+          {
+            "name": "Y",
+            "value": "0x00400000"
+          },
+          {
+            "name": "L",
+            "value": "0x00500000"
+          },
+          {
+            "name": "R",
+            "value": "0x00600000"
+          },
+          {
+            "name": "Select",
+            "value": "0x00700000"
+          },
+          {
+            "name": "Start",
+            "value": "0x00800000"
+          }
+        ]
+      }
+    ]
+  }
+}

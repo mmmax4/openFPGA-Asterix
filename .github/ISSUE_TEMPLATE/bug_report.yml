@@ -1,0 +1,21 @@
+name: Bug report
+description: Report a reproducible Asterix Pocket issue
+body:
+  - type: textarea
+    id: environment
+    attributes:
+      label: Core version and Pocket OS version
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Scene and reproduction steps
+      description: Describe what happened and what you expected. Do not upload ROMs or saves.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Screenshots or brief video/audio comparison
+      description: Identify Pocket versus reference footage and the relevant time.
