@@ -20,8 +20,7 @@ Full-game completion and every Dock action have not been exhaustively verified.
 The FPGA circuit is unchanged from the qualified 0.1.4 build. This publication
 does not involve a new compilation or gameplay simulation.
 
-GitHub supplies **Source code (zip/tar.gz)** from the release tag; no duplicate
-source ZIP is uploaded. SHA256SUMS covers the compiled package. Installation,
+SHA256SUMS covers the compiled package. Installation,
 controls and the version history are in the repository README and CHANGELOG.
 
 Thanks to plasticbugs/Scott, jlrh, Jotego/JTFRAME, Marcus Andrade/OpenGateware,
