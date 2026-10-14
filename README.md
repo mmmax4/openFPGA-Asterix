@@ -42,15 +42,20 @@ the original EEPROM-backed Test menu. Arcade 4:3 is default; Fill screen uses 10
 
 ## Version 0.1.4
 
-The colored KONAMI logo animation is corrected and confirmed on Pocket. Improved speech decoding is retained.
+The colored KONAMI logo animation is corrected and confirmed on Pocket.
 For installation, use the [latest 0.1.4 release](https://github.com/mmmax4/openFPGA-Asterix/releases/tag/v0.1.4).
 Versions 0.1.2 and 0.1.3 are available as historical releases; see [changelog](CHANGELOG.md).
 
 Pocket tests on OS 2.7 confirmed gameplay through level 2 on the earlier baseline,
 EEPROM initialization, direct startup and cabinet-setting persistence.
 Speech improved substantially in 0.1.3 comparisons; some mild distortion may remain.
-High-score persistence is **not supported**: only the 128-byte cabinet EEPROM is
-saved. Full-game completion and every two-player Dock action have not been
+
+**High-score persistence is not supported.** High scores and entered names are stored in working RAM, and the original
+program restores the default score table at startup. The EEPROM contains
+cabinet settings, not scores. Persistent high scores would require a separate
+RAM save/restore feature, which this core does not implement.
+
+Full-game completion and every two-player Dock action have not been
 exhaustively verified. See [validation scope](docs/VALIDATION.md).
 
 The package includes the original platform marquee and a Pocket title screenshot.

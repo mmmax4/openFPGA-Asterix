@@ -20,6 +20,12 @@ on the earlier Pocket build. Report repeated EEPROM BIT CHECK BAD as a failure.
 Wait until the level introduction finishes before testing movement/punch/jump.
 Compare the full no-credit KONAMI sequence and selection speech; for audio,
 SOUND CHECK 98/AE/AF are useful comparison cases. Cabinet settings
-are managed in the original Test menu. Only the EEPROM is saved; high-score
-persistence and save states are not implemented. OS metadata requires 2.0;
-Pocket tests used OS 2.7.
+are managed in the original Test menu. Save states are not implemented.
+OS metadata requires 2.0; Pocket tests used OS 2.7.
+
+## High scores
+
+High scores and entered names are stored in working RAM, and the original
+program restores the default score table at startup. The EEPROM contains
+cabinet settings, not scores. Persistent high scores would require a separate
+RAM save/restore feature, which this core does not implement.
