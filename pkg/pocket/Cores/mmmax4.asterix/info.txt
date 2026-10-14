@@ -1,0 +1,15 @@
+Asterix (World EAD), Konami 1992
+Analogue Pocket openFPGA port by mmmax4
+
+0.1.2: Historical playable baseline. The KONAMI logo animation and speech still have known issues.
+
+D-pad: move; B/X: punch; A/Y: jump.
+Select: coin; Start: start/select. Dock: 2 players.
+Cabinet settings: original EEPROM-backed Test menu; save 128 bytes.
+High scores and save states are not saved. ROMs and saves are not included.
+
+Gateware: jlrh/konami-fpga, Jotego/JTCORES/JTFRAME.
+FX68K: Jorge Cwik. T80: preserved contributor notices.
+Pocket integration: plasticbugs/Scott/MooBucky,
+Marcus Andrade/OpenGateware and Analogue.
+See CREDITS.md and LICENSING.md.

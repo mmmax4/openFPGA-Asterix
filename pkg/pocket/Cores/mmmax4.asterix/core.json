@@ -1,0 +1,36 @@
+{
+  "core": {
+    "magic": "APF_VER_1",
+    "metadata": {
+      "platform_ids": [
+        "asterix"
+      ],
+      "shortname": "asterix",
+      "description": "Asterix (Konami, 1992), World EAD Pocket core",
+      "author": "mmmax4",
+      "url": "https://github.com/mmmax4/openFPGA-Asterix",
+      "version": "0.1.2",
+      "date_release": "2026-10-14"
+    },
+    "framework": {
+      "target_product": "Analogue Pocket",
+      "version_required": "2.0",
+      "sleep_supported": false,
+      "dock": {
+        "supported": true,
+        "analog_output": false
+      },
+      "hardware": {
+        "link_port": false,
+        "cartridge_adapter": -1
+      }
+    },
+    "cores": [
+      {
+        "name": "default",
+        "id": 0,
+        "filename": "astdev.rbf_r"
+      }
+    ]
+  }
+}
