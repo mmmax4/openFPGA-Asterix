@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.3
+
+- Correct forward PPCM nibble order and signed accumulator wrapping.
+- Speech quality substantially improved in Pocket comparisons; mild distortion may remain.
+- Update large-sprite vertical geometry and pipeline the sprite scanner.
+- Known issue: the colored KONAMI logo wipe is still missing; fixed in 0.1.4.
+- Automatic startup, original marquee and cabinet EEPROM persistence retained.
+
 ## 0.1.2
 
 - Playable historical baseline in the Arcade category.

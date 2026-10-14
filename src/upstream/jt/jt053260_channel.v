@@ -35,12 +35,11 @@ wire        [15:0] length;
 wire        [11:0] pitch;
 wire        [ 6:0] volume;
 
-reg         [15:0] cnt, inc;
+reg         [15:0] cnt;
 reg         [11:0] pitch_cnt;
 reg  signed [ 7:0] pre_snd;
-reg  signed [ 7:0] kadpcm, adpcm_sat, adpcm_lim;
-reg  signed [ 8:0] adpcm_full;
-reg                adpcm_cnt, keyon_l, adpcm_over;
+reg  signed [ 7:0] kadpcm;
+reg                adpcm_cnt, keyon_l, end_pending, loop_restart;
 
 wire        [12:0] nx_pitch_cnt;
 wire signed [15:0] mul_l, mul_r;
@@ -48,12 +47,19 @@ wire signed [ 7:0] svl, svr;
 reg         [13:0] vol_l, vol_r;
 wire        [ 3:0] nibble;
 wire               tst_mode;
+wire               byte_complete;
+wire signed [7:0]   adpcm_next;
 
 assign start    = { mmr[6][4:0], mmr[5], mmr[4] };
 assign length   = { mmr[3], mmr[2] };
 assign pitch    = { mmr[1][3:0], mmr[0] };
 assign volume   = { mmr[7][6:0] };
 assign tst_mode = tst_en && TESTRD==1;
+// Local Pocket correction: consume low then high and advance after the high
+// nibble. Retain the inherited reverse-address/XOR extension for swap mode.
+assign byte_complete = (adpcm_cnt ^ swap) || !adpcm_en;
+// The KDSC accumulator is signed 8-bit arithmetic, not a saturating DAC.
+assign adpcm_next = (loop_restart ? 8'sd0 : pre_snd) + kadpcm;
 
 assign nx_pitch_cnt = {1'd0, pitch_cnt } + 13'd1;
 assign nibble       = adpcm_cnt^swap ? rom_data[7:4] : rom_data[3:0];
@@ -110,13 +116,6 @@ always @(posedge clk) begin
     rom_addr <= start + (swap ? neg_cnt : {5'd0,cnt});
 end
 
-always @* begin
-    adpcm_full = {pre_snd[7], pre_snd} + {kadpcm[7],kadpcm};
-    adpcm_sat  = {adpcm_full[8],{7{~adpcm_full[8]}}};
-    adpcm_over = adpcm_full[8]!=adpcm_full[7];
-    adpcm_lim  = adpcm_over ? adpcm_sat : adpcm_full[7:0];
-end
-
 always @(posedge clk) begin
     if( rst ) begin
         cnt       <= 0;
@@ -125,36 +124,59 @@ always @(posedge clk) begin
         rom_cs    <= 0;
         bsy       <= 0;
         keyon_l   <= 0;
+        pre_snd   <= 0;
+        end_pending <= 0;
+        loop_restart <= 0;
     end else begin
         if( cen ) begin
             rom_cs  <= 1;
             keyon_l <= keyon;
             if( !keyon_l && keyon ) begin
                 bsy       <= 1;
-                cnt       <= 0;
-                adpcm_cnt <= 1;
+                // Forward playback pre-increments the programmed byte start.
+                // Zero-length loops begin at byte zero; empty nonloops stop
+                // on their first update without decoding a byte.
+                cnt       <= (swap || length==0 || tst_mode) ? 16'd0 : 16'd1;
+                adpcm_cnt <= swap;
                 pitch_cnt <= pitch;
+                pre_snd   <= 0;
+                end_pending <= !swap && length==0 && !loop;
+                loop_restart <= 0;
             end
             if( !keyon ) begin
                 pre_snd <= 0;
                 rom_cs  <= 0;
                 bsy     <= 0;
+                end_pending <= 0;
+                loop_restart <= 0;
             end else if( bsy ) begin
                 pitch_cnt <= nx_pitch_cnt[12] ? pitch : nx_pitch_cnt[11:0];
                 if( nx_pitch_cnt[12] ) begin
-                    // ROM address increment and sample cnt increment
-                    adpcm_cnt <= ~adpcm_cnt;
-                    if( !adpcm_cnt || !adpcm_en ) begin
-                        cnt <= cnt + 1'd1;
-                        if( match ) begin
-                            if( loop ) begin
-                                cnt      <= 0;
+                    if( end_pending ) begin
+                        // Keep the final decoded value for its full period.
+                        bsy <= 0;
+                        rom_cs <= 0;
+                        end_pending <= 0;
+                    end else begin
+                        pre_snd <= adpcm_en ? adpcm_next : rom_data;
+                        loop_restart <= 0;
+                        adpcm_cnt <= ~adpcm_cnt;
+                        if( byte_complete ) begin
+                            if( match ) begin
+                                if( loop ) begin
+                                    // Prefetch byte zero between updates; reset
+                                    // the accumulator when that byte is decoded.
+                                    cnt <= 0;
+                                    adpcm_cnt <= swap;
+                                    loop_restart <= 1;
+                                end else begin
+                                    end_pending <= 1;
+                                end
                             end else begin
-                                bsy <= 0;
+                                cnt <= cnt + 1'd1;
                             end
                         end
                     end
-                    pre_snd <= adpcm_en ? adpcm_lim : rom_data;
                 end
             end
         end

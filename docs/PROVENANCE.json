@@ -1,6 +1,6 @@
 {
   "core_id": "mmmax4.asterix",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "source_hashes": {
     "src/modules/cpu-fx68k/fx68k.sv": "a718bb869a8a969dbdda89facd76f8621f655f8a84e7afa9551b2785eee5656a",
     "src/modules/cpu-fx68k/fx68kAlu.sv": "3f22006cbdb8cb661e5f54cc779f79bb697b587c86d586103478703fca38bcce",
@@ -120,7 +120,7 @@
     "src/target/pocket/sram_port.sv": "d7fc41f5861d17d4117f77cc51f78f80c681ac04ea4d6cd5059a36010e7edee0",
     "src/target/pocket/sram_selftest.sv": "c9bf8485a5f6cb7bf082b7b8ef28a35490b38549a7800c47e224cfaaabf9b438",
     "src/upstream/asterix/jtasterix_053244.sv": "6693468740d218a4a6fe695abfe2984fc063ef14d8551326648bd6831f840ae2",
-    "src/upstream/asterix/jtasterix_053244_scan.sv": "4fd7716d4ea0fde0f24e0a92ab0bd8fcc852930bffaa3c2de514ad6017ebc2b0",
+    "src/upstream/asterix/jtasterix_053244_scan.sv": "e1d9cb96d2db0787cebb05a4643fac3a511fb638804117b34618f7edfc8130e7",
     "src/upstream/asterix/jtasterix_colmix.v": "6e2ca757f1658c3c2a13e8e69af06017fae3ad8b2bcd73e03d6da98219a1117e",
     "src/upstream/asterix/jtasterix_game.v": "a590529ecff2d931d765517cefc7d6da247076c6f0ac89a8ff364032bb41a5af",
     "src/upstream/asterix/jtasterix_k056832.v": "49eceedb101fcd2ad24a232246bdef7efc3c39d17c1f4507a588f9ba28c29fcd",
@@ -143,7 +143,7 @@
     "src/upstream/jt/jt053246_dma.v": "f4a2511aa7786165f04d2e537a19cbe5f028a4eeaec926b6afd8cf1d6fe6eb3f",
     "src/upstream/jt/jt053246_mmr.v": "6b7944c7732256bb2ad1c9dac98203edbf205614b8d4dfcf95bb08f3605753a6",
     "src/upstream/jt/jt053260.v": "136b2935087d14aa0ac30efc1bc9cfba8e2240d60a65111ff614b54f0866a21a",
-    "src/upstream/jt/jt053260_channel.v": "20e4fe98802f8fe495fb618cbd282b5110ea053b023a6a31f803b0ed82aa0650",
+    "src/upstream/jt/jt053260_channel.v": "0c20838b0e3dc862f8ad4623ec0021a3a229397c01552852f1c13a08902edcc2",
     "src/upstream/jt/jt053260_timer.v": "f4b1abd9f28c88c90625aaa7500d75de58642d6fa2fa8c78f30a76aa664b9ea0",
     "src/upstream/jt/jtcolmix_053251.v": "b2d1cc3007781fd647d3a637bb5f462dcf171c06ad630b5e2d517139a74cee26",
     "src/upstream/jt/jtframe_68kdtack_cen.v": "2096b2915a2b4f5e4530e28143aedb0570950d72b9100d10629bc4321617b0e7",
@@ -176,22 +176,22 @@
     "src/upstream/jt/jtframe_z80.v": "3a625df409f0cdf7bda98f72b3cd02b114ce3952b5f0ae86e150dbd23051ae09",
     "src/upstream/jt/jtframe_z80wait.v": "b6c44e008e7557f7d744f6365378f4cc054f5d2e8eecb061686b43ca46537624"
   },
-  "raw_rbf_sha256": "706fe31e446e119aeaa7cb82a5852a2b83051ff6ee778db8c27c7d301e2baa07",
-  "pocket_rbf_sha256": "80dd91e77cbb3c1f0e68930b40e76e17b20bc46637b6141eb79b83c77dc18ab1",
-  "qualified_fit_sha256": "7389ef06c1894668e308f1c4cf3a43876a853d2df36204e67561537bff79a806",
-  "independent_fitted_review_sha256": "b3897b9144f6ff76963f9f745cafdc22e2768ee769f69e66c485d36add5f8fc0",
+  "raw_rbf_sha256": "ca83a4744f82e5d9a87f87c651620b23bda7dcc26b3775d632ee5b9a8e70bb3f",
+  "pocket_rbf_sha256": "71fa658b9f378bce4b0eaffbd4200e2863fb14cac8e1ce4d21381903de479280",
+  "qualified_fit_sha256": "d8d1a3d0561fef8500d4dc36b709a566a4f7f7c7c6b7e23c30981508e8707f99",
+  "independent_fitted_review_sha256": "cd48226916018e9503e040b4684fcd69f45c1f1491ed1625725a1e196f6cae53",
   "fitted_worst_slack_ns": [
-    0.369,
-    0.12,
-    3.771,
-    0.505,
+    0.352,
+    0.043,
+    2.234,
+    0.436,
     0.651
   ],
   "resources": {
     "alms": {
-      "used": 8467,
+      "used": 8507,
       "capacity": 18480,
-      "free": 10013
+      "free": 9973
     },
     "memory_bits": {
       "used": 1178528,
@@ -214,7 +214,7 @@
       "free": 2
     },
     "registers": {
-      "used": 14070
+      "used": 14183
     }
   },
   "upstream": {

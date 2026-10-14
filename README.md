@@ -40,9 +40,9 @@ Dock supports two players. Test and Service buttons start Unassigned; optional
 assignments and Test Switch (hold) are in the core menu. Cabinet settings use
 the original EEPROM-backed Test menu. Arcade 4:3 is default; Fill screen uses 10:9.
 
-## Version 0.1.2
+## Version 0.1.3
 
-Historical playable baseline. The KONAMI logo animation and speech still have known issues.
+Speech decoding is improved. The colored KONAMI logo wipe is still missing.
 For installation, use the [latest 0.1.4 release](https://github.com/mmmax4/openFPGA-Asterix/releases/tag/v0.1.4).
 Versions 0.1.2 and 0.1.3 are available as historical releases; see [changelog](CHANGELOG.md).
 

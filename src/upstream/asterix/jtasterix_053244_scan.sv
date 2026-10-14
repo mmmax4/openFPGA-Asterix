@@ -76,6 +76,36 @@ reg  [ 8:0] zoffset [0:255];
 reg  [ 3:0] pzoffset[0:15 ];
 reg  [ 6:0] pri;
 
+// The logo wipe uses zoom=2 (32x) and a 64-pixel source sprite. Its
+// 1024-pixel half-height cannot fit the inherited nine-bit offset table.
+// Keep the existing ordinary-zoom path; calculate large magnifications in
+// screen coordinates before clipping, rather than wrapping their origin.
+reg [9:0] large_raw_center;
+reg signed [15:0] large_distance;
+reg [13:0] large_row;
+wire [9:0] large_center_raw = large_raw_center-yadj;
+wire signed [15:0] large_center = large_center_raw>=10'd640 ?
+    $signed({6'b111111,large_center_raw}) :
+    $signed({6'd0,large_center_raw});
+wire [13:0] large_half = large_half_height(scan_even[11:0],vsz);
+wire [17:0] large_triple = {2'd0,large_distance}+
+                          {1'd0,large_distance,1'b0};
+function [13:0] large_half_height(input [11:0] zoom, input [1:0] sz);
+    reg [23:0] scale;
+    reg [27:0] scaled_height;
+    begin
+        case(zoom)
+            0: scale=24'h800000;
+            1: scale=24'h400000;
+            2: scale=24'h200000;
+            3: scale=24'h155555;
+            default: scale=24'h100000;
+        endcase
+        scaled_height={4'd0,scale} << sz;
+        large_half_height=scaled_height[26:13];
+    end
+endfunction
+
 assign hflip     = (ghf ^ pre_hf)&!hmir | hmir_eff;
 assign scan_addr = { scan_obj, scan_sub };
 assign ysub      = ydiff[3:0];
@@ -96,6 +126,18 @@ always @(posedge clk) begin
                                    // opposite to the one in Aliens, which always
                                    // shrunk for non-zero zoom values
     /* verilator lint_on WIDTH */
+    // Step 2 captures distance and zoom. The intervening system edge
+    // registers the source row before step 3 consumes its mirror bit.
+    // Use shifts and one add for zoom 0..4, avoiding a variable DSP path.
+    if(rst) large_row <= 0;
+    else case(vzoom)
+        0: large_row <= {5'd0,large_distance[15:7]};
+        1: large_row <= {4'd0,large_distance[15:6]};
+        2: large_row <= {3'd0,large_distance[15:5]};
+        3: large_row <= {2'd0,large_triple[17:6]};
+        4: large_row <= {2'd0,large_distance[15:4]};
+        default: large_row <= 0;
+    endcase
 end
 
 function [8:0] zmove( input [1:0] sz, input[8:0] scl );
@@ -123,6 +165,7 @@ always @* begin
     y2     = y + {1'b0,ymove};
     ydiff_b= y2 + { vlatch[8], vlatch };
     ydiff  = yz_add[6+:10];
+    if(vzoom<12'd5) ydiff=large_row[9:0];
     // test ver/parodius/scene/9 -> "bomb", scan_obj 5
     case( vsz )
         0: vmir_eff = nx_mir[1] && ydiff[3] && ydiff[9:4]==0;
@@ -138,6 +181,14 @@ always @* begin
         3: inzone = ydiff_b[9]==ydiff[9] && ydiff[9:7]==0; // 128
     endcase
     if( yz_add[16] ) inzone=0;
+    if(vzoom<12'd5) begin
+        case(vsz)
+            0: inzone=large_distance>=0 && large_row<14'd16;
+            1: inzone=large_distance>=0 && large_row<14'd32;
+            2: inzone=large_distance>=0 && large_row<14'd64;
+            3: inzone=large_distance>=0 && large_row<14'd128;
+        endcase
+    end
     case( hsz )
         0: hdone = 1;
         1: hdone = hstep==1;
@@ -186,6 +237,8 @@ always @(posedge clk, posedge rst) begin
         indr     <= 0;
         hhalf    <= 0;
         shd      <= 0;
+        large_raw_center <= 0;
+        large_distance <= 0;
     end else if( cen2 ) begin
         hs_l <= hs;
         dr_start <= 0;
@@ -223,6 +276,8 @@ always @(posedge clk, posedge rst) begin
                 end
                 1: begin
                     y <= gvf ? -scan_even[9:0] : scan_even[9:0];
+                    large_raw_center <= 10'd256-
+                        (gvf ? -scan_even[9:0] : scan_even[9:0]);
                     x <= ghf ? -scan_odd[ 9:0] : scan_odd[ 9:0];
                     hcode <= {code[4],code[2],code[0]};
                     hstep <= 0;
@@ -233,6 +288,11 @@ always @(posedge clk, posedge rst) begin
                     vzoom <= scan_even[11:0];
                     hzoom <= sq ? scan_even[11:0] : scan_odd[11:0];
                     vscl <= rd_pzoffset(scan_even[11:0]);
+                    // Sample the same yadj as the ordinary adjusted-Y path.
+                    // Incoming zoom belongs to this object; vzoom still
+                    // contains the preceding object's value at this edge.
+                    large_distance <= $signed({8'd0,vlatch[7:0]})-
+                        large_center+$signed({2'd0,large_half});
                 end
                 3: begin
 `ifdef OBJDIAG

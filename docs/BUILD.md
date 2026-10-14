@@ -21,7 +21,7 @@ python3 scripts/reverse_rbf.py src/projects/output_files/asterix_pocket.rbf astd
 ```
 
 Check newly generated timing/warnings at all corners; build exit alone does not
-qualify a new circuit. The distributed 0.1.2 circuit's hashes/source identities
+qualify a new circuit. The distributed 0.1.3 circuit's hashes/source identities
 are in docs/PROVENANCE.json. Proprietary Quartus libraries/tools are not vendored.
 
 ROM assembly needs only the Python standard library; see README. Private-proof
