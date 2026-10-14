@@ -19,9 +19,9 @@ retain their own platform/device terms. The SDRAM baseline and plasticbugs'
 additional controller changes retain their separate provenance. Corresponding
 preferred source and build settings accompany the unchanged compiled circuit.
 
-The title screenshot is the user-requested game capture, not software licensed
+The title screenshot and original marquee are game artwork, not software licensed
 under this document. Game names/characters/artwork remain their original owners'
-works. Catalog artwork is excluded; the public banner is independently authored.
+works. The original platform marquee is included. Game artwork is separate from software licensing.
 No game ROM, factory EEPROM dump, save, private recording/message or proprietary
 tool/library binary is distributed. CPU microcode tables are implementation
 source, distinct from Asterix program/graphics/sample ROMs.
@@ -30,4 +30,4 @@ The independent 2026-10-14 permission review found the seven previously uncovere
 compiled-source contributions resolved by this permission, with no additional
 concrete missing grant identified in the inspected snapshot. Third-party conditions
 above remain mandatory. The lead's final actual-artifact audit and publication
-operation remain separate; this local preparation performs no upload.
+operation remain separate; recorded artifact checks establish the release contents.

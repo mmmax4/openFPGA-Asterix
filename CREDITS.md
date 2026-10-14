@@ -1,6 +1,6 @@
 # Credits
 
-- **mmmax4** — Asterix Pocket integration, local adaptations, validation and user testing.
+- **mmmax4** — Asterix Pocket integration, local adaptations, validation and Pocket testing.
 - **jlrh / konami-fpga** — Asterix gateware; original notices preserve Rafael Eduardo
   Paiva Feener, Miki Saito and other named contributors.
 - **Jose Tejada / Jotego / JTCORES / JTFRAME** — common devices/framework, JT51 and JT5911.
@@ -17,5 +17,5 @@
 
 Individual copyright notices remain authoritative. Plasticbugs specifically
 asked that inherited credits, especially Jotego and Marcus Andrade, be preserved.
-The README title is the user's explicitly requested screenshot. Original game
-data, private recordings/messages and the catalog marquee are not distributed.
+The README includes a Pocket title screenshot. Original game
+data, private recordings/messages are not distributed. The original marquee is included as platform artwork.

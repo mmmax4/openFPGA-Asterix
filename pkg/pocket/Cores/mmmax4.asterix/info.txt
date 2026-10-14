@@ -1,15 +1,12 @@
 Asterix (World EAD), Konami 1992
 Analogue Pocket openFPGA port by mmmax4
 
+0.1.4: The colored KONAMI logo animation is corrected and confirmed on Pocket. Improved speech decoding is retained.
+
 D-pad: move; B/X: punch; A/Y: jump.
 Select: coin; Start: start/select. Dock: 2 players.
-Original EEPROM-backed Test menu; save128 bytes.
-High-score persistence is not supported.
-ROMs and saves are not included.
-
-0.1.4: centered KONAMI sprite clipping corrected;
-v013 forward speech decoder retained.
-User confirms logo on Pocket; see validation scope.
+Cabinet settings: original EEPROM-backed Test menu; save 128 bytes.
+High scores and save states are not saved. ROMs and saves are not included.
 
 Gateware: jlrh/konami-fpga, Jotego/JTCORES/JTFRAME.
 FX68K: Jorge Cwik. T80: preserved contributor notices.

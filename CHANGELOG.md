@@ -2,12 +2,27 @@
 
 ## 0.1.4
 
-- Correct centered vertical clipping for raw zoom below five, fixing the KONAMI wipe.
-- Preserve the improved v013 forward PPCM order/wrap decoder unchanged.
-- Exact qualified/tested v014 FPGA circuit and all 173 corresponding source inputs.
-- ROM-free package with World EAD ZIP builder and independent verifier.
-- Plain public banner and the user-requested unchanged README title screenshot.
-- Arcade identity mmmax4.asterix, automatic startup and 128-byte asterix.sav unchanged.
-- User confirms the v014 logo; digital/fitted/hardware scopes documented separately.
-- Inherited credits/notices retained; plasticbugs' written contribution permission noted.
-- EEPROM cabinet settings only; high-score persistence remains unsupported.
+- Fix centered vertical clipping for highly zoomed sprites, restoring the colored KONAMI logo wipe.
+- Correct KONAMI logo animation confirmed on Pocket.
+- Retain the improved 0.1.3 speech decoder unchanged.
+- Automatic startup, original marquee and cabinet EEPROM persistence retained.
+
+## 0.1.3
+
+- Correct forward PPCM nibble order and signed accumulator wrapping.
+- Speech quality substantially improved in Pocket comparisons; mild distortion may remain.
+- Update large-sprite vertical geometry and pipeline the sprite scanner.
+- Known issue: the colored KONAMI logo wipe is still missing; fixed in 0.1.4.
+- Automatic startup, original marquee and cabinet EEPROM persistence retained.
+
+## 0.1.2
+
+- Playable historical baseline in the Arcade category.
+- Automatic loading of Asterix (World EAD), without the initial selection screen.
+- Original platform marquee and EEPROM-backed cabinet settings.
+- EEPROM initialization through Test Switch (hold) and Reset Core.
+- Known issues: KONAMI logo animation and metallic speech; fixed or improved in later releases.
+
+All releases include a compiled ROM-free core, the World EAD ROM builder,
+preserved source licenses and credits. Only the 128-byte cabinet EEPROM is saved;
+high-score persistence and save states are not implemented.
