@@ -7,9 +7,8 @@ from [MooBucky / plasticbugs](https://github.com/plasticbugs/moomesa).
 
 ![Asterix title screen on Analogue Pocket](docs/images/title.png)
 
-**Maintainer request:** please share this port free of charge and use it for
-noncommercial purposes. This is separate from the existing software licenses;
-see [the request and its limits](NONCOMMERCIAL_REQUEST.md).
+**License:** [GNU GPLv3](LICENSE) for the applicable project code. Original
+third-party licenses and notices remain in effect; see [licensing](LICENSING.md).
 
 ## Install
 

@@ -1,16 +1,9 @@
 # Licensing and provenance
 
-## Noncommercial use request
-
-The maintainer requests noncommercial use and free sharing; see
-[the request and its limits](NONCOMMERCIAL_REQUEST.md). This does not relicense
-GPL-covered code or add restrictions to third-party grants. Existing licenses
-and notices below remain applicable.
-
-This is a mixed inherited source tree: no blanket root license is invented for
-all files. Existing file notices and license texts remain authoritative.
-Original integration/tooling contributions for this port are GPL-3.0-or-later;
-that statement does not replace third-party terms.
+Original integration/tooling contributions for this port are licensed under
+**GNU GPL-3.0-or-later**; the GPLv3 text is provided in [LICENSE](LICENSE).
+This is a mixed inherited source tree. Existing file notices and license texts
+remain authoritative; the project license does not replace third-party terms.
 
 Plasticbugs / Scott supplied written reuse/derivative permission on 2026-10-14,
 asking that original credits be retained. His open/free preference was expressly
