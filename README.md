@@ -7,6 +7,10 @@ from [MooBucky / plasticbugs](https://github.com/plasticbugs/moomesa).
 
 ![Asterix title screen on Analogue Pocket](docs/images/title.png)
 
+**Maintainer request:** please share this port free of charge and use it for
+noncommercial purposes. This is separate from the existing software licenses;
+see [the request and its limits](NONCOMMERCIAL_REQUEST.md).
+
 ## Install
 
 1. Copy the release's **Cores**, **Platforms** and **Assets** folders to the SD root.

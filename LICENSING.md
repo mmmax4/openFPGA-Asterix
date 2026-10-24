@@ -1,5 +1,12 @@
 # Licensing and provenance
 
+## Noncommercial use request
+
+The maintainer requests noncommercial use and free sharing; see
+[the request and its limits](NONCOMMERCIAL_REQUEST.md). This does not relicense
+GPL-covered code or add restrictions to third-party grants. Existing licenses
+and notices below remain applicable.
+
 This is a mixed inherited source tree: no blanket root license is invented for
 all files. Existing file notices and license texts remain authoritative.
 Original integration/tooling contributions for this port are GPL-3.0-or-later;
